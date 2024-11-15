@@ -1,11 +1,11 @@
+# main_script.py
+
 import cairo
+import math
+from drawing_functions import draw_window, draw_window_side, set_rgb_color  # Import functions
 
 # Define constants for the surface size
 WIDTH, HEIGHT = 700, 500
-
-# Helper function to set RGB colors using 0–255 values
-def set_rgb_color(context, r, g, b):
-    context.set_source_rgb(r / 255, g / 255, b / 255)
 
 # Create a surface and context
 surface = cairo.ImageSurface(cairo.FORMAT_RGB30, WIDTH, HEIGHT)
@@ -105,7 +105,6 @@ context.set_source_rgb(0, 0, 0)  # Stroke color: black
 context.stroke()
 
 
-
 context.move_to(90, 200)
 context.line_to(200, 80)
 context.line_to(205, 78)
@@ -128,6 +127,16 @@ context.set_line_width(2)
 context.stroke_preserve()
 
 
+# Draw the first window
+draw_window(context, x_offset=0, y_offset=0, angle=-10)
+
+# Reset transformation matrix for the next window
+context.identity_matrix()
+
+# Draw the second window 50 pixels next to the first one
+draw_window(context, x_offset=100, y_offset=-20, angle=-10)
+
+draw_window_side(context, x_offset=-250, y_offset=-300, angle=35)
+
 # Save the result to a file
-surface.write_to_png("output.png")
-print("Drawing saved to output.png")
+surface.write_to_png("output1.png")
