@@ -1,12 +1,11 @@
+# main_script.py
+
 import cairo
 import math
+from drawing_functions import draw_window, draw_window_side, set_rgb_color  # Import functions
 
 # Define constants for the surface size
 WIDTH, HEIGHT = 700, 500
-
-# Helper function to set RGB colors using 0–255 values
-def set_rgb_color(context, r, g, b):
-    context.set_source_rgb(r / 255, g / 255, b / 255)
 
 # Create a surface and context
 surface = cairo.ImageSurface(cairo.FORMAT_RGB30, WIDTH, HEIGHT)
@@ -106,7 +105,6 @@ context.set_source_rgb(0, 0, 0)  # Stroke color: black
 context.stroke()
 
 
-
 context.move_to(90, 200)
 context.line_to(200, 80)
 context.line_to(205, 78)
@@ -129,97 +127,6 @@ context.set_line_width(2)
 context.stroke_preserve()
 
 
-# Define a function to draw a slanted window
-def draw_window(context, x_offset, y_offset, angle):
-    # Apply 10-degree slant transformation
-    angle = math.radians(angle)
-    matrix = cairo.Matrix(1, math.tan(angle), 0, 1, x_offset, y_offset)
-    context.transform(matrix)
-
-    # Draw the outer green rectangle
-    context.rectangle(300, 345, 60, 90)  # x=300, y=345, width=60, height=90
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the inner blue rectangle
-    context.rectangle(310, 355, 40, 70)  # x=310, y=355, width=40, height=70
-    set_rgb_color(context, 165, 239, 255)  # Blue fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the green horizontal rectangle (line) in the middle of the blue rectangle
-    context.rectangle(310, 385, 40, 5)  # x=310, y=385, width=40, height=5
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-# Define a function to draw a slanted window
-def draw_window(context, x_offset, y_offset, angle):
-    # Apply 10-degree slant transformation
-    angle = math.radians(angle)
-    matrix = cairo.Matrix(1, math.tan(angle), 0, 1, x_offset, y_offset)
-    context.transform(matrix)
-
-    # Draw the outer green rectangle
-    context.rectangle(300, 345, 60, 90)  # x=300, y=345, width=60, height=90
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the inner blue rectangle
-    context.rectangle(310, 355, 40, 70)  # x=310, y=355, width=40, height=70
-    set_rgb_color(context, 165, 239, 255)  # Blue fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the green horizontal rectangle (line) in the middle of the blue rectangle
-    context.rectangle(310, 385, 40, 5)  # x=310, y=385, width=40, height=5
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-def draw_window_side(context, x_offset, y_offset, angle):
-    # Apply 10-degree slant transformation
-    angle = math.radians(angle)
-    matrix = cairo.Matrix(1, math.tan(angle), 0, 1, x_offset, y_offset)
-    context.transform(matrix)
-
-    # Draw the outer green rectangle
-    context.rectangle(300, 345, 60, 90)  # x=300, y=345, width=60, height=90
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the inner blue rectangle
-    context.rectangle(310, 355, 40, 70)  # x=310, y=355, width=40, height=70
-    set_rgb_color(context, 165, 239, 255)  # Blue fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the green horizontal rectangle (line) in the middle of the blue rectangle
-    context.rectangle(310, 385, 40, 5)  # x=310, y=385, width=40, height=5
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-    # Draw the green vertical rectangle (line) in the middle of the blue rectangle
-    context.rectangle(330, 355, 5, 70)  # x=330, y=355, width=5, height=70
-    set_rgb_color(context, 0, 160, 93)  # Green fill
-    context.fill_preserve()
-    context.set_source_rgb(0, 0, 0)  # Black stroke
-    context.stroke()
-
-
 # Draw the first window
 draw_window(context, x_offset=0, y_offset=0, angle=-10)
 
@@ -231,8 +138,5 @@ draw_window(context, x_offset=100, y_offset=-20, angle=-10)
 
 draw_window_side(context, x_offset=-250, y_offset=-300, angle=35)
 
-
-
 # Save the result to a file
-surface.write_to_png("output.png")
-print("Drawing saved to output.png")
+surface.write_to_png("output1.png")
